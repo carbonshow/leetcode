@@ -1,0 +1,14 @@
+[zh]
+title = "小虫飞飞大本营"
+languageName = "中文"
+languageDir = "ltr"
+contentDir = "content/zh"
+weight = 1
+
+[en]
+title = "小虫飞飞大本营"
+languageName = "English"
+languageDir = "ltr"
+contentDir = "content/en"
+weight = 2
+
