@@ -1,6 +1,7 @@
 baseURL = "https://carbonshow.github.io"
 title = "小虫飞飞"
 theme = "zzo"
+useFaviconGenerator = true
 
 defaultContentLanguage = "zh"
 defaultContentLanguageInSubdir = true

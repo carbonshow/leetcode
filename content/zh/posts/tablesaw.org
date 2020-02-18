@@ -1,7 +1,7 @@
 #+title: JVM上的Pandas：tablesaw
 #+date: 2020-02-10
 #+description: jvm中数据表分析/展示利器
-#+draft: true
+#+draft: false
 #+hideToc: false
 #+enableToc: true
 #+enableTocContent: true
@@ -62,7 +62,7 @@
 {{< tabs maven sbt >}}
   {{< tab >}}
  
-  ```html
+  ```xml
   <!-- https://mvnrepository.com/artifact/tech.tablesaw/tablesaw-core -->
   <dependency>
     <groupId>tech.tablesaw</groupId>
