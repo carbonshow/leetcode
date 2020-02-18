@@ -6,9 +6,9 @@
 #+enableToc: true
 #+enableTocContent: true
 #+author: 小虫飞飞
-#+authorEmoji: 🤖
+#+authorImage: images/whoami/bioimage.jpg
 #+tags[]: pandas jvm scala dataframe
-#+categories[]: tools table
+#+categories[]: tools
 #+series[]: "data mining"
 #+image: images/tablesaw/tablesaw.jpeg
 

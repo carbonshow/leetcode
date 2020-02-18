@@ -1,0 +1,13 @@
+#+title: 基于hugo 在github 上搭建个人博客
+#+date: 2020-02-18
+#+description: 使用 Hugo 将 Markup 文档转化为静态页面，并通过 github 托管展示
+#+draft: true
+#+hideToc: false
+#+enableToc: true
+#+enableTocContent: true
+#+author: 小虫飞飞
+#+authorImage: images/whoami/bioimage.jpg
+#+tags[]: hugo github blog
+#+categories[]: tools
+#+series[]: "web"
+#+image: images/hugo_github/front_cover.png
