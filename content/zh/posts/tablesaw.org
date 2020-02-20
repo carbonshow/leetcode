@@ -19,7 +19,7 @@
 * 应用场景
   
 *** 数据：处理流程
-{{< img src="/images/tablesaw/工作环境.png" title="工作环境" align="center" alt="工作环境" width="600px">}}
+{{< img src="/images/tablesaw/工作环境.png" title="工作环境" align="center" alt="工作环境" width="600px" >}}
     小虫在工作中使用 =Spark= 将业务产生的海量用户行为按模块加工：过滤冗余/简单汇总，并导出至 =PostgreSQL= 的不同表中，存储正交化的基础数据。比如用户的登陆/购买行为分别记录到， =LoginTable= 和 =ShoppingTable= 。然后在 =二次处理= 模块中建立不同服务，比如 S1，S2。S1 直接访问数据库，S2 的既要访问数据库，又要访问 S1 的统计结果，还要依赖本地的 csv 文件。
 
 *** 计算需求分类

@@ -11,3 +11,197 @@
 #+categories[]: tools
 #+series[]: "web"
 #+image: images/hugo_github/front_cover.png
+
+#+BEGIN_QUOTE
+=小虫飞飞大本营= 折腾了一段时间终于搞定了，虽然简陋但总算有个落脚的地方。开荒时遇到了不少问题，记录下来，算是一种纪念吧。
+#+END_QUOTE
+
+* 初衷
+
+搭建个人技术博客，目的有两个：
+
+- 知识整理。在工作或者闲暇时，大家总会遇到各种问题和感兴趣的技术点。俗话说好记性不如烂笔头，及时归纳总结有助回顾。这样一种情况想必大家遇到过：某个问题心里很清楚，但讲出来时发现不够周密，有遗漏。这正应了[[https://wiki.mbalib.com/wiki/费曼学习法][费曼学习法]] ：用写作、讲授来倒逼学习。
+- 以“技”会友。独乐不如众乐，有交流探讨才能更快成长。更多人看到，就会有更多人评价，不仅有助于发现自己的纰漏，也能帮助更多的人少走弯路。
+
+为了实现上面的目标， =小虫= 做了一遍调研，发现有以下几种途径：
+
+- 微信公众号。传播便捷，内容质量要求高，还能有收益。
+- 现成的博客平台。耳熟能详的有：CSDN，简书，博客园；近几年兴起的：掘金，SegmentFault；问答形式的知识平台：知乎等。它们的好处是：
+  - 体系成熟。无论是编辑，查询，搜索，互动，收益，一应俱全。
+  - 搜索引擎友好。基本都做到了极致，这意味着可以跳脱出固有圈子，让更多人阅读。
+- 自己搭建。最大的好处是树立个人品牌，代价是——全部从零开始：服务器，域名，备案，数据库，后台进程等一整套。当然现在也有不少云服务商提供配套解决方案，比如：阿里，腾讯，netlify 等。这应该是最难走的一条路，但也是不少技术大牛采取的方式。
+- 基于已有静态页面托管平台。典型例子就是 =github= ，域名和服务器都有，只缺内容。
+
+经过评估，小虫最终决定从静态页面开始，把心思聚焦在内容上，等真正有所积累再慢慢向外推广。那么问题剩下两个：
+- 选择一个静态页面生成工具
+- 选择一个页面托管平台
+
+* 静态页面生成器
+
+  简称 SSG(Static Site Generator)，简而言之一句话：让作者把精力聚焦在内容上，将 Markup 语言写出的普通文本转化为丰富多彩的 web 页面。这个需求可以说直击广大技术宅的痛点，您瞧现有的成熟解决方案就多达 400+ 。[[https://www.creativebloq.com/features/10-best-static-site-generators][2019最佳的10个SSG]] ，再加上国内大名鼎鼎的 [[https://hexo.io/zh-cn/][hexo]] 基本补全了优秀候选列表。
+  =小虫= 最终选择了 [[https://gohugo.io/][hugo]] ，原因很简单：
+  - 基于 =go= 开发，一个二进制就行，没有错综复杂的依赖关系。
+  - 社区活跃。这点很重要，用的人越多，解决方案也就更多。
+  - 功能完善。前端语言支持的种类丰富，比如 =小虫= 习惯使用的 [[https://orgmode.org/][Org-Mode]] ，已经内置支持；整体框架灵活易懂，比如文档分类，多语言，主题，内置 shortcode 支持更强大的表现力等；修改即时预览；一键部署等。
+  说了这么多还是直接上图吧，我们期望的就是： *些普通文本，看 web 页面* 
+
+{{< img src="/images/hugo_github/demo.png" title="源文本演示" align="center" alt="源文本演示" width="800px" >}}
+
+  本文基于 [[https://www.gnu.org/software/emacs/][Emacs]] 使用 =Org-Mode= 编写，所有内容均来自于该文件，生成的 web 页面就是您当前看到的：
+
+{{< img src="/images/hugo_github/demo2.png" title="Web 页面展示" align="center" alt="Web 页面展示" width="800px" >}}
+
+  官网有[[https://gohugo.io/getting-started/quick-start/][快速开始]]的详细说明， =小虫= 以自己的实际情况为例，介绍重点。
+
+** 安装及创建
+
+{{< tabs Mac >}}
+  {{< tab >}}
+
+  *安装*
+  ```bash
+  brew install hugo
+  ```
+
+  *创建新网站，根目录：小虫飞飞*
+  ```bash
+  hugo new site 小虫飞飞
+  ```
+  {{< /tab >}}
+{{< /tabs >}}
+
+** 配置
+
+    =hugo= 框架完善且庞大，如果根据文档逐条学习，虽然可以获得整体认识，但在实际应用中依然会碰到很多问题。因为不同主题在 =hugo= 基础上多多少少做了些个性化的封装，且使用方式差异较大。所以 =小虫= 建议： *先选主题，在主题框架内学习配置* 。与实践结合，提高了学习效率。
+    主题挑选可以在 [[https://themes.gohugo.io/][Hugo主题官网]] 查阅， =小虫= 使用的是 =zzo= 。下面以 =zzo= 为例简述使用过程：
+
+{{< tabs zzo >}}
+  {{< tab >}}
+
+  ##### 安装主题
+  ```bash
+  git submodule add ttps://github.com/zzossig/hugo-theme-zzo.git themes/zzo
+  ```
+
+  ##### 参考示例配置自己的工程
+  ```bash
+  cp -rf themes/zzo/exampleSite/config .
+  cp -rf themes/zzo/exampleSite/content .
+  cp -rf themes/zzo/exampleSite/static .
+  ```
+
+  ##### 修改基本信息和默认语言：config/_default/config.toml
+  ```toml
+  baseURL = "https://carbonshow.github.io"
+  title = "小虫飞飞"
+  theme = "zzo"
+  defaultContentLanguage = "zh"
+  ```
+  ##### 多语言配置，仅保留中英文：config/_default/languages.toml
+  ```toml
+  [zh]
+  title = "小虫飞飞大本营"
+  languageName = "中文"
+  languageDir = "ltr"
+  contentDir = "content/zh"
+  weight = 1
+
+  [en]
+  title = "小虫飞飞大本营"
+  languageName = "English"
+  languageDir = "ltr"
+  contentDir = "content/en"
+  weight = 2
+  ```
+  ##### 菜单栏配置，每种语言一个，以中文为例： menus.zh.toml
+  ```toml
+  [[main]]
+  identifier = "about"
+  name = "关于"
+  url = "about"
+  weight = 1
+
+  [[main]]
+  identifier = "posts"
+  name = "探险笔记"
+  url = "posts"
+  weight = 2
+  ```
+  ##### 内容目录配置
+  content 目录下保存博客的实际内容，每种语言一个子目录。可以将 ko 重命名为 cn 。
+  注意每个目录中的 `_index.md` 是对该模块的整体配置，可以参考注释结合自己需要修改。
+  ##### 运行本地查看：http://localhost:1313
+  ```bash
+  hugo server -D
+  ```
+  {{< /tab >}}
+{{< /tabs >}}
+
+* 静态页面托管——Github
+  利用 =Github Pages= 托管并展示生成的静态页面，做到了提交后立即生效，非常适合 git 用户。 =Pages= 有两种类型：
+  - 面向用户和组织
+  - 面向具体工程
+
+  博客是一个平台，内容比较丰富可能并不针对某个具体的工程，所以选择前者。基本流程如下所示。
+{{< alert theme="info" >}}
+Step 1: Github 创建自己的账号
+{{< /alert >}}
+   貌似是废话，github 官网直接注册即可， =小虫= 的账号是 =carbonshow= ，后面以此为例展开介绍。
+{{< alert theme="info" >}}
+Step 2: Github 创建第一个 repository ，用来保存 =hugo= 工程，比如：mylog
+{{< /alert >}}
+{{< img src="/images/hugo_github/create_blog_repo.png" title="创建 blog 仓库" align="center" alt="创建 blog 仓库" width="400px" >}}
+   创建完毕后，clone 到本地然后按照上面的介绍建立 =hugo= 工程。
+#+BEGIN_SRC bash
+git clone https://github.com/carbonshow/myblog.git
+#+END_SRC
+   内容完成后大概是这个样子：
+{{< img src="/images/hugo_github/blog_repo_preview.png" title="blog 结构预览" align="center" alt="blog 结构预览" width="600px" >}}
+{{< alert theme="info" >}}
+Step 3: Github 创建第二个 repository ，用来保存 *静态页面* 也就是对外展示的页面，仓库名建议采用： *username.github.io* 的形式，比如 *carbonshow.github.io*
+{{< /alert >}}
+{{< alert theme="info" >}}
+Step 4: 本地进入 *myblog* 目录，将 *carbonshow.github.io* 以 submoudle 的形式添加到 *public* 子目录中保存生成的页面。
+{{< /alert >}}
+#+BEGIN_SRC bash
+git submodule add -b master https://github.com/carbonshow/carbonshow.github.io.git public
+#+END_SRC
+{{< alert theme="info" >}}
+Step 5:  *myblog* 目录内运行 `hugo` 会生成页面到 *public* 目录中。进入该目录提交并 push 到远程仓库。
+{{< /alert >}}
+{{< alert theme="info" >}}
+Step 6: 生成和提交过程可以简化为 bash 脚本，将下述代码放入 *deploy.sh* 文件执行即可。
+{{< /alert >}}
+#+BEGIN_SRC bash
+#!/bin/sh
+
+# If a command fails then the deploy stops
+set -e
+
+printf "\033[0;32mDeploying updates to GitHub...\033[0m\n"
+
+# Build the project.
+hugo # if using a theme, replace with `hugo -t <YOURTHEME>`
+
+# Go To Public folder
+cd public
+
+# Add changes to git.
+git add .
+
+# Commit changes.
+msg="rebuilding site $(date)"
+if [ -n "$*" ]; then
+	msg="$*"
+fi
+git commit -m "$msg"
+
+# Push source and build repos.
+git push origin master
+#+END_SRC
+{{< alert theme="info" >}}
+Step 7: 登陆 https://carbonshow.github.io 就可以看到想要的内容啦
+{{< /alert >}}
+
+* 小结
+上面介绍了基本流程，核心还是内容的创作。希望大家都能顺利搭建，然后愉快地开始码字吧。哦，顺便推荐个制作 icon 的网站：https://www.favicon-generator.org/ ，一张图片就能转化成针对不同平台的适配图，且和 zzo 主题无缝对接，大家可以试试哦。
