@@ -1,7 +1,6 @@
-#+TITLE: Cluster Sharding及kafka应用
-#+AUTHOR: simontao
-#+DATE: 2020-08-10
-#+DESCRIPTION: 介绍Cluster Sharding 的基本原理以及在kafka consumer 场景中的应用
+#+title: Cluster Sharding及kafka应用
+#+date: 2020-08-10
+#+description: 介绍Cluster Sharding 的基本原理以及在kafka consumer 场景中的应用
 #+draft: false
 #+hideToc: false
 #+enableToc: true
@@ -93,7 +92,6 @@ Rebalance 时更新 Nodes 和 Entity 的映射关系，需要考虑的因素和�
 #+ATTR_HTML: :width 800px
 [[/images/cluster-sharding/session_routing_flow.png]]
 
-<<core_steps_for_Sharding>>
 上图展示了 session 场景下数据路由的基本流程，总结起来 **核心环节** 有两个：
 - 根据消息确定 Entity ID。
 - 监听 Cluster 变化，根据 Entity ID 获取所属节点位置。
@@ -120,7 +118,7 @@ Rebalance 时更新 Nodes 和 Entity 的映射关系，需要考虑的因素和�
 
 * Cluster Sharding
 
-Cluster Sharding 在集群内部实现消息路由，无论哪个节点接收到外部投递的消息，都应准确发送到目标 Entity 所属 Node。这需要提根据消息自身内容获取 Node 位置，并随着 Cluster 伸缩自适应更新（[[core_steps_for_Sharding][Sharding核心问题]]）。这种方式对外屏蔽了路由的复杂性，而且 Cluster 本来就要处理消息，可以做各种自定义逻辑，提高了灵活性。下面本文参考[[https://doc.akka.io/docs/akka/current/typed/index-Cluster.html][Akka Cluster]] 介绍 Sharding 的体系结构和术语，然后描述 /routing, rebalance/ 过程。 
+Cluster Sharding 在集群内部实现消息路由，无论哪个节点接收到外部投递的消息，都应准确发送到目标 Entity 所属 Node。这需要提根据消息自身内容获取 Node 位置，并随着 Cluster 伸缩自适应更新。这种方式对外屏蔽了路由的复杂性，而且 Cluster 本来就要处理消息，可以做各种自定义逻辑，提高了灵活性。下面本文参考[[https://doc.akka.io/docs/akka/current/typed/index-Cluster.html][Akka Cluster]] 介绍 Sharding 的体系结构和术语，然后描述 /routing, rebalance/ 过程。 
 
 ** 体系简介
 
