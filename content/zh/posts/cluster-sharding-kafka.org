@@ -1,6 +1,6 @@
 #+TITLE: Cluster Sharding及kafka应用
 #+AUTHOR: simontao
-#+DATE: <2020-08-04 Tue>
+#+DATE: 2020-08-10
 #+DESCRIPTION: 介绍Cluster Sharding 的基本原理以及在kafka consumer 场景中的应用
 #+draft: false
 #+hideToc: false
