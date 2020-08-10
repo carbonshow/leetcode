@@ -123,7 +123,7 @@ Cluster Sharding 在集群内部实现消息路由，无论哪个节点接收到
 ** 体系简介
 
 #+CAPTION: Sharding 术语介绍
-#+NAME: tbl:akka_Cluster_Sharding_terms
+#+ATTR_HTML: :class table table-striped table-dark
 | 符号 | 全称              | 说明                                                                                         |
 |------+-------------------+----------------------------------------------------------------------------------------------|
 | <c>  |                   |                                                                                              |

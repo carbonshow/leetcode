@@ -29,10 +29,12 @@
      - 模型验证。评估决策需要的分析模型多变，要经过反复调整得到最终结果。关键在于 *快速迭代* 。
 
 *** 特点汇总
+    #+CAPTION: 数据处理场景特点
+    #+ATTR_HTML: :class table table-striped table-dark
     | 纬度   | 特点                                   | 说明                             |
     |--------+----------------------------------------+----------------------------------|
-    | 数据量 | 较小单机可承载                         | 原始数据由 spark 汇总              |
-    | 格式   | 数据库，本地 csv，json                  | json 多来自于 restful 服务          |
+    | 数据量 | 较小单机可承载                         | 原始数据由 spark 汇总            |
+    | 格式   | 数据库，本地 csv，json                 | json 多来自于 restful 服务       |
     | 计算   | 增删改查，条件查询，表连接，聚合，统计 | 内置算子越多，扩展性越高越好     |
     | 交互   | 输出到指定格式，可视化，可交互 等      | 网页渲染，终端，[[https://jupyter.org/][Jupyter Notebook]] |
     | 集成   | 轻量，以库而非服务的形式               | 便于嵌入进程和其他逻辑交互       |
@@ -103,7 +105,8 @@ println(tbl.printAll())
 println(tbl.columnArray().mkString("\n")) 
 #+END_SRC
 
-   输出表格内容为：
+   #+CAPTION: 输出表格内容
+   #+ATTR_HTML: :class table table-striped table-dark
    |       date | name  | 工时 | 报酬 |
    |------------+-------+------+------|
    | 2019-01-08 | tom   |    8 | 1000 |
@@ -227,7 +230,8 @@ val mapFunc: Double2BooleanFunction =
 workTimeCol.mapInto(mapFunc, fullTimeCol)                  // 形变
 tbl.addColumns(fullTimeCol)                                // 将列添加到表格中
 #+END_SRC
-    输出结果为：
+    #+CAPTION: 输出结果
+    #+ATTR_HTML: :class table table-striped table-dark
     |       date | name  | 工时 | 报酬 | 全勤  |
     |------------+-------+------+------+-------|
     | 2019-01-08 | tom   |    8 | 1000 | true  |
@@ -267,7 +271,8 @@ val salarySel = tbl.doubleColumn(3).isLessThan(1000)
 // 综合各条件过滤表格
 tbl.where(dateSel.and(workTimeSel).and(salarySel))
 #+END_SRC
-    输出结果符合预期：
+    #+CAPTION: 输出结果符合预期
+    #+ATTR_HTML: :class table table-striped table-dark
     |       date | name  | 工时 | 报酬 | 全勤 |
     |------------+-------+------+------+------|
     | 2019-01-10 | 张三  |    8 |  999 | true |
@@ -282,16 +287,19 @@ tbl.where(dateSel.and(workTimeSel).and(salarySel))
       - rightOuter. 结果表公共列数据与右侧表完全相同，不在其中的过滤，缺失的设置空值。
       - fullOuter. 结果表公共列数据为两个表的并集，缺失的设置空值。
     举个例子，增加一个新表 tbl2 记录每人的工作地点：
+    #+CAPTION: tbl2: 工作地点
+    #+ATTR_HTML: :class table table-striped table-dark
     | name | 地点   |
     |------+--------|
     | 张三 | 总部   |
     | 李四 | 门店 1 |
-   | 王五 | 门店 2 |
+    | 王五 | 门店 2 |
     采用 inner 方式和 demo 表连接：
 #+BEGIN_SRC scala
 val tbl3 = tbl.joinOn("name").inner(tbl2)
 #+END_SRC
-    tbl3 的内容是：
+    #+CAPTION: tbl3
+    #+ATTR_HTML: :class table table-striped table-dark
     |       date | name | 工时 | 报酬 | 全勤  | 地点  |
     |------------+------+------+------+-------+-------|
     | 2019-01-10 | 张三 |    8 |  999 | true  | 总部  |
@@ -304,6 +312,8 @@ val tbl3 = tbl.joinOn("name").inner(tbl2)
 #+BEGIN_SRC scala
 tbl3.summarize("报酬", sum).by("name")
 #+END_SRC
+    #+CAPTION: 报酬汇总
+    #+ATTR_HTML: :class table table-striped table-dark
     | name  | Sum [报酬] |
     |-------+------------|
     | tom   |       2800 |
